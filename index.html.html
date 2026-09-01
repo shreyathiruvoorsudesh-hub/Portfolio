@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreya Sudesh — Marketing → Product</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E1013;
+    --surface: #16181D;
+    --surface-2: #1C1F26;
+    --text: #F3F1EA;
+    --text-dim: #9A9CA6;
+    --coral: #FF6B4A;
+    --coral-soft: rgba(255,107,74,0.12);
+    --mint: #7CE0C8;
+    --mint-soft: rgba(124,224,200,0.12);
+    --line: #292C33;
+    --radius: 6px;
+    --max: 1140px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 100% 88px,
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  h1,h2,h3{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    line-height:1.05;
+    letter-spacing:-0.015em;
+    color:var(--text);
+  }
+
+  .mono{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(14,16,19,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:1.02rem;
+  }
+  .logo .dot{color:var(--coral);}
+  .navlinks{
+    display:flex;
+    gap:26px;
+    font-size:0.78rem;
+  }
+  .navlinks a{
+    text-decoration:none;
+    color:var(--text-dim);
+    transition:color 0.2s;
+  }
+  .navlinks a:hover{color:var(--text);}
+  @media (max-width:640px){ .navlinks{gap:14px; font-size:0.72rem;} }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding:80px 0 0; }
+  .eyebrow{
+    font-size:0.7rem;
+    color:var(--mint);
+    margin-bottom:20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px; height:1px;
+    background:var(--mint);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    max-width:920px;
+    margin-bottom:24px;
+  }
+  .hero h1 .hl-coral{color:var(--coral);}
+  .hero h1 .hl-mint{color:var(--mint);}
+  .hero p.lede{
+    font-size:1.1rem;
+    color:var(--text-dim);
+    max-width:520px;
+    margin-bottom:34px;
+  }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:56px; }
+  .btn{
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:14px 24px;
+    border-radius:999px;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+    font-weight:700;
+  }
+  .btn-primary{ background:var(--coral); color:#151515; }
+  .btn-primary:hover{ transform:translateY(-2px); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--text); }
+  .btn-ghost:hover{ border-color:var(--mint); color:var(--mint); }
+
+  /* stat strip */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:800px){ .stats{grid-template-columns:repeat(2, 1fr);} }
+  .stat{
+    padding:28px 24px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  @media (max-width:800px){ .stat:nth-child(2n){border-right:none;} .stat{border-bottom:1px solid var(--line);} }
+  .stat .label{
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--text);
+  }
+  .stat .label.c{ color:var(--coral); }
+  .stat .label.m{ color:var(--mint); }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:80px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    margin-bottom:44px;
+    gap:24px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{ font-size:clamp(1.6rem, 3.2vw, 2.2rem); }
+  .section-num{ font-size:0.72rem; color:var(--text-dim); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:44px;
+  }
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+  .about-photo{
+    aspect-ratio:1/1.05;
+    border-radius:var(--radius);
+    border:1px dashed var(--line);
+    background:var(--surface);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .about-photo .placeholder-text{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    color:var(--text-dim);
+    text-align:center;
+    padding:0 20px;
+  }
+  .about-grid p{
+    font-size:1.02rem;
+    color:var(--text-dim);
+    margin-bottom:16px;
+    max-width:580px;
+  }
+  .about-grid p strong{ color:var(--text); font-weight:600; }
+
+  /* ---------- CURRENTLY ---------- */
+  .currently{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:40px;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:32px;
+    align-items:center;
+  }
+  @media (max-width:700px){ .currently{grid-template-columns:1fr; padding:28px;} }
+  .currently .pulse{
+    width:11px; height:11px;
+    border-radius:50%;
+    background:var(--coral);
+    box-shadow:0 0 0 0 rgba(255,107,74,0.6);
+    animation:pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(255,107,74,0.5);}
+    70%{box-shadow:0 0 0 10px rgba(255,107,74,0);}
+    100%{box-shadow:0 0 0 0 rgba(255,107,74,0);}
+  }
+  .currently-label{
+    display:flex; align-items:center; gap:10px;
+    font-size:0.7rem; color:var(--coral); margin-bottom:10px;
+  }
+  .currently h3{ font-size:1.3rem; margin-bottom:8px; }
+  .currently p{ color:var(--text-dim); font-size:0.95rem; max-width:560px; }
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp-item{
+    display:grid;
+    grid-template-columns:170px 1fr;
+    gap:24px;
+    padding:30px 0;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .exp-item:first-of-type{ border-top:none; }
+  @media (max-width:700px){ .exp-item{grid-template-columns:1fr; gap:8px;} }
+  .exp-date{ font-size:0.72rem; color:var(--mint); }
+  .exp-role{
+    font-size:1.18rem;
+    font-weight:700;
+    font-family:'Sora', sans-serif;
+    margin-bottom:10px;
+  }
+  .exp-role span{ color:var(--text-dim); font-weight:500; font-size:0.92rem; }
+  .exp-item ul{ color:var(--text-dim); padding-left:18px; font-size:0.95rem; }
+  .exp-item li{ margin-bottom:6px; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-card{
+    border:1px solid var(--line);
+    border-radius:8px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    overflow:hidden;
+  }
+  @media (max-width:700px){ .skills-card{grid-template-columns:1fr;} }
+  .skill-col{ padding:36px 32px; }
+  .skill-col.marketing{ border-right:1px solid var(--line); }
+  @media (max-width:700px){ .skill-col.marketing{border-right:none; border-bottom:1px solid var(--line);} }
+  .skill-col h3{ font-size:0.72rem; margin-bottom:18px; }
+  .skill-col.marketing h3{ color:var(--coral); }
+  .skill-col.product h3{ color:var(--mint); }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tag{
+    font-size:0.83rem;
+    padding:7px 13px;
+    border-radius:20px;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--text-dim);
+  }
+  .skill-col.marketing .skill-tag{ border-color:rgba(255,107,74,0.35); }
+  .skill-col.product .skill-tag{ border-color:rgba(124,224,200,0.35); }
+
+  /* ---------- PROJECTS ---------- */
+  .projects{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:20px;
+  }
+  @media (max-width:900px){ .projects{grid-template-columns:1fr;} }
+  .project-card{
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:28px;
+    background:var(--surface);
+    transition:transform 0.2s ease, border-color 0.2s ease;
+  }
+  .project-card:hover{ transform:translateY(-4px); border-color:var(--mint); }
+  .project-tag{
+    font-size:0.66rem;
+    color:var(--mint);
+    margin-bottom:16px;
+    display:inline-block;
+  }
+  .project-card h3{ font-size:1.12rem; margin-bottom:10px; }
+  .project-card p{ font-size:0.9rem; color:var(--text-dim); margin-bottom:16px; }
+  .project-link{
+    font-size:0.76rem;
+    text-decoration:none;
+    color:var(--coral);
+    border-bottom:1px solid var(--coral);
+    padding-bottom:2px;
+  }
+  .project-note{
+    font-size:0.76rem;
+    color:var(--text-dim);
+    font-style:italic;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact h2{
+    font-size:clamp(1.9rem, 4.8vw, 3.2rem);
+    max-width:700px;
+    margin-bottom:28px;
+  }
+  .contact h2 .hl{ color:var(--coral); }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
+  .contact-link{
+    border:1px solid var(--line);
+    padding:14px 24px;
+    border-radius:999px;
+    text-decoration:none;
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:border-color 0.15s, color 0.15s;
+  }
+  .contact-link:hover{ border-color:var(--mint); color:var(--mint); }
+
+  footer{
+    padding:32px 0;
+    border-top:1px solid var(--line);
+    font-size:0.76rem;
+    color:var(--text-dim);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">Shreya Sudesh<span class="dot">.</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow mono">AI Product & GTM Marketing</div>
+    <h1>Turning complex AI into a <span class="hl-mint">story that sells itself.</span></h1>
+    <p class="lede">I build AI-powered tools myself, then turn what they actually do into positioning, enablement content and go-to-market plans that sales and delivery teams can run with.</p>
+    <div class="cta-row">
+      <a href="#work" class="btn btn-primary">View work →</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="label m">LinkedIn following grown organically</div>
+    </div>
+    <div class="stat">
+      <div class="label c">AI-native tools built end-to-end</div>
+    </div>
+    <div class="stat">
+      <div class="label m">CRM system built from scratch</div>
+    </div>
+    <div class="stat">
+      <div class="label c">Full company rebrand & positioning led</div>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid reveal">
+    <div class="about-photo">
+      <img src="shreya-photo.jpg" alt="Shreya Sudesh">
+    </div>
+    <div>
+      <div class="section-num mono" style="margin-bottom:16px;">01 / About</div>
+      <p><strong>I don't just market AI products — I build them.</strong> I've built a claims-management app end-to-end using AI tools (Base44), and an AI-powered Go/No-Go decision tool for my company's business development team using Monday.com's AI app builder — on top of building a full CRM system from scratch for that same team. That hands-on build experience is what lets me translate what a product actually does into a story a sales or delivery team can use.</p>
+      <p>On the go-to-market side, I've led a full company rebrand and website launch, built the stakeholder relationships — with Marketing Heads, Brand Managers and Media Managers — that keep messaging aligned across teams, and grown an audience organically through consistent content. I'm currently deepening the product side further through the AI in Product Design and Management programme with IITM Pravartak.</p>
+    </div>
+  </div>
+</section>
+
+<section id="currently">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <h2>Currently</h2>
+      <div class="section-num mono">02</div>
+    </div>
+    <div class="currently">
+      <div class="pulse"></div>
+      <div>
+        <div class="currently-label mono">In progress</div>
+        <h3>AI in Product Design and Management — IITM Pravartak</h3>
+        <p>Building structured product understanding — user research, design fundamentals, and hands-on AI app-building — the same instinct behind the tools I've already shipped for my current team.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <h2>Experience</h2>
+      <div class="section-num mono">03</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date mono">May 2024 – Present</div>
+      <div>
+        <div class="exp-role">Digital Marketing & Sales Co-Ordinator <span>· Samsic Facility Ireland</span></div>
+        <ul>
+          <li>Built a full CRM system from scratch on Monday.com for the business development team</li>
+          <li>Built an AI-powered Go/No-Go decision tool (Monday.com AI app builder) to help the team qualify and prioritise pursuit opportunities</li>
+          <li>Led the company's complete rebrand — positioning, messaging, and the design and launch of a new website</li>
+          <li>Cultivated relationships with Marketing Heads, Brand Managers and Media Managers to align messaging and streamline business processes</li>
+          <li>Identified new business opportunities and contributed directly to new business pitches</li>
+          <li>Grew LinkedIn following organically from 700 to 2,500+ in one year through consistent, value-driven content</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date mono">May 2023 – May 2024</div>
+      <div>
+        <div class="exp-role">Customer Success Optimization & Growth Advisor <span>· Permanent TSB</span></div>
+        <ul>
+          <li>Managed customer chats and calls across banking products, tracking every case in Salesforce with zero errors</li>
+          <li>Applied AML and KYC compliance across all customer interactions</li>
+          <li>Recognised as Customer Service Agent of the Month</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <h2>What I bring</h2>
+      <div class="section-num mono">04</div>
+    </div>
+    <div class="skills-card">
+      <div class="skill-col marketing">
+        <h3 class="mono">Narrative, content & GTM</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Positioning & messaging</span>
+          <span class="skill-tag">Go-to-market content & launches</span>
+          <span class="skill-tag">Sales enablement assets</span>
+          <span class="skill-tag">Content across the buyer journey</span>
+          <span class="skill-tag">SEO & campaigns</span>
+          <span class="skill-tag">Stakeholder & cross-functional alignment</span>
+        </div>
+      </div>
+      <div class="skill-col product">
+        <h3 class="mono">AI & product building</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">AI-assisted app building (Base44, Monday vibecoding)</span>
+          <span class="skill-tag">CRM & systems building</span>
+          <span class="skill-tag">Product design fundamentals</span>
+          <span class="skill-tag">Prototyping</span>
+          <span class="skill-tag">AI model awareness</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap reveal">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <div class="section-num mono">05</div>
+    </div>
+    <div class="projects">
+      <div class="project-card">
+        <span class="project-tag mono">Built with AI · Base44</span>
+        <h3>Smart Claim Path</h3>
+        <p>An AI-built claims workflow app developed during the IITM Pravartak program — hands-on practice structuring a product from user flow through to build.</p>
+        <a href="https://conscious-smart-claim-path.base44.app/my-claims" class="project-link" target="_blank" rel="noopener">View live app →</a>
+      </div>
+      <div class="project-card">
+        <span class="project-tag mono">Built with AI · Monday.com</span>
+        <h3>Go/No-Go Decision Tool</h3>
+        <p>An AI-powered internal tool built on Monday.com's AI app builder, helping my company's business development team qualify and prioritise pursuit opportunities before committing resources.</p>
+        <span class="project-note">Internal company tool — not publicly viewable</span>
+      </div>
+      <div class="project-card">
+        <span class="project-tag mono">Systems & CRM</span>
+        <h3>Business Development CRM</h3>
+        <p>Designed and built a full CRM system from scratch on Monday.com for the business development team — replacing manual tracking with a structured pipeline, reporting and campaign-tracking system.</p>
+        <span class="project-note">Internal company tool — not publicly viewable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap contact reveal">
+    <div class="section-num mono" style="margin-bottom:20px;">06 / Contact</div>
+    <h2>Always happy to <span class="hl">connect.</span></h2>
+    <div class="contact-links">
+      <a href="https://www.linkedin.com/in/shreya-thiruvoor-sudesh" class="contact-link" target="_blank" rel="noopener">LinkedIn →</a>
+      <a href="mailto:shreya.thiruvoorsudesh@gmail.com" class="contact-link">Email →</a>
+      <a href="Shreya_-_Resume.pdf" class="contact-link" download>Resume ↓</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+    <span>Shreya Sudesh</span>
+    <span>Built with intent, shipped like a product.</span>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add('in-view'); }
+    });
+  }, {threshold: 0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
